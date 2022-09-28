@@ -1,0 +1,12 @@
+PeerOrgs:
+  - Name: Org1
+    Domain: org1.example.com
+    EnableNodeOUs: true
+    Specs:
+      - Hostname: peer0
+        SANS:
+          - peer0.org1.example.com
+          - localhost
+          - 127.0.0.1
+    Users:
+      Count: 1

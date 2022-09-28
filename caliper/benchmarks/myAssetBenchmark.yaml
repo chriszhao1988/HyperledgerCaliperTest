@@ -1,0 +1,38 @@
+test:
+    name: basic-contract-benchmark
+    description: test benchmark
+    workers:
+        type: local
+        number: 5
+    rounds:
+        -   label: query
+            description: test asset benchmark
+            txNumber: 50000
+            rateControl:
+                type: fixed-load
+                opts:
+                    unfinished_per_client: 300
+            workload:
+                module: workload/asset_query.js
+                arguments:
+                    assets: 1
+                    contractId: test
+        -   label: invoke
+            description: test asset benchmark
+            txNumber: 1000
+            rateControl:
+                type: fixed-load
+                opts:
+                    unfinished_per_client: 300
+            workload:
+                module: workload/asset.js
+                arguments:
+                    assets: 1
+                    contractId: test
+monitors:
+    resource:
+        -   module: docker
+            options:
+                interval: 5
+                containers:
+                    - all
